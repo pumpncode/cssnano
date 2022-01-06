@@ -1,6 +1,6 @@
 /**
- * @param {postcss.ChildNode} nodeA
- * @param {postcss.ChildNode} nodeB
+ * @param {import('postcss').ChildNode} nodeA
+ * @param {import('postcss').ChildNode} nodeB
  * @return {boolean}
  */
 function checkMatch(nodeA, nodeB) {
@@ -14,8 +14,8 @@ function checkMatch(nodeA, nodeB) {
 }
 
 /**
- * @param {postcss.ChildNode} nodeA
- * @param {postcss.ChildNode} nodeB
+ * @param {import('postcss').ChildNode} nodeA
+ * @param {import('postcss').ChildNode} nodeB
  * @return {boolean}
  */
 export default function sameParent(nodeA, nodeB) {

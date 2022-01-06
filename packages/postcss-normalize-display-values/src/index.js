@@ -1,6 +1,9 @@
 import valueParser from 'postcss-value-parser';
 import mappings from './lib/map';
 
+/**
+ * @param {string} value
+ */
 function transform(value) {
   const { nodes } = valueParser(value);
 
@@ -25,7 +28,10 @@ function transform(value) {
 
   return match;
 }
-
+/**
+ * @type {import('postcss').PluginCreator<void>}
+ * @return {import('postcss').Plugin}
+ */
 function pluginCreator() {
   return {
     postcssPlugin: 'postcss-normalize-display-values',

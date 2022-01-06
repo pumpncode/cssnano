@@ -1,6 +1,10 @@
 const pluginCreator = () => {
   return {
     postcssPlugin: 'cssnano-util-raw-cache',
+    /**
+     * @param {import('postcss').Root} css
+     * @param {{result: import('postcss').Result}} arg
+     */
     OnceExit(css, { result }) {
       result.root.rawCache = {
         colon: ':',

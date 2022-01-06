@@ -6,6 +6,7 @@
     "fixlint": "pnpm lint -- --fix",
     "prepare": "pnpm run -r --parallel prepare",
     "build:integration": "node ./util/buildFrameworks.mjs",
+    "build:types": "tsc --build",
     "pretest": "pnpm lint",
     "test:only": "uvu -r @babel/register packages \"__tests__.*\\.js$\"",
     "test:coverage": "c8 pnpm test:only",
@@ -45,6 +46,7 @@
     "postcss-value-parser": "^4.2.0",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
+    "typescript": "^4.5.5",
     "uvu": "^0.5.3"
   },
   "browserslist": {
