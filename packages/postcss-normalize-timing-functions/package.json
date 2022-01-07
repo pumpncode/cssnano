@@ -3,6 +3,7 @@
   "version": "5.0.2",
   "description": "Normalize CSS animation/transition timing functions.",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "babel src --config-file ../../babel.config.json --out-dir dist --ignore \"**/__tests__/\"",
@@ -10,7 +11,8 @@
   },
   "files": [
     "LICENSE-MIT",
-    "dist"
+    "dist",
+    "types"
   ],
   "license": "MIT",
   "dependencies": {

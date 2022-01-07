@@ -15,7 +15,8 @@
     "strict": true
   },
   "references": [
-    {"path": "packages/postcss-normalize-display-values"}
+    {"path": "packages/postcss-normalize-display-values"},
+    {"path": "packages/postcss-normalize-timing-functions"}
   ],
   "files": []
 }
