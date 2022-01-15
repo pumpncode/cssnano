@@ -16,7 +16,8 @@
   },
   "references": [
     {"path": "packages/postcss-normalize-display-values"},
-    {"path": "packages/postcss-normalize-timing-functions"}
+    {"path": "packages/postcss-normalize-timing-functions"},
+    {"path": "packages/postcss-normalize-whitespace"}
   ],
   "files": []
 }
