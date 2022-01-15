@@ -17,6 +17,7 @@
   "references": [
     {"path": "packages/postcss-normalize-display-values"},
     {"path": "packages/postcss-normalize-timing-functions"},
+    {"path": "packages/postcss-normalize-string"},
     {"path": "packages/postcss-discard-comments"},
     {"path": "packages/postcss-discard-empty"},
     {"path": "packages/postcss-normalize-whitespace"}
