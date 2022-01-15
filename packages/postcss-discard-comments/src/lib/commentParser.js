@@ -1,3 +1,4 @@
+/** @param {string} input */
 export default function commentParser(input) {
   const tokens = [];
   const length = input.length;

@@ -3,9 +3,11 @@
   "version": "5.0.2",
   "description": "Discard comments in your CSS files with PostCSS.",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "files": [
     "dist",
-    "LICENSE-MIT"
+    "LICENSE-MIT",
+    "types"
   ],
   "scripts": {
     "prebuild": "rimraf dist",

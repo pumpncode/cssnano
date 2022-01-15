@@ -1,7 +1,8 @@
+/** @param {import('../index.js').PostCssRemoveCommentsOptions} options */
 function CommentRemover(options) {
   this.options = options;
 }
-
+/** @param {string} comment */
 CommentRemover.prototype.canRemove = function (comment) {
   const remove = this.options.remove;
 
