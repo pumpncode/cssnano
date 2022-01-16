@@ -1,7 +1,12 @@
 import valueParser, { stringify } from 'postcss-value-parser';
-
+/**
+ * @param {(number|string)[]} list
+ * @param {valueParser.Node} node
+ * @param {number} index
+ */
 function getValues(list, node, index) {
   if (index % 2 === 0) {
+    /** @type {number|string} */
     let value = NaN;
 
     if (
@@ -19,7 +24,10 @@ function getValues(list, node, index) {
 
   return list;
 }
-
+/**
+ * @param {valueParser.FunctionNode} node
+ * @param {(number|string)[]} values
+ */
 function matrix3d(node, values) {
   if (values.length !== 16) {
     return;
@@ -63,7 +71,10 @@ const rotate3dMappings = new Map([
   [[0, 1, 0].toString(), 'rotateY'], // rotate3d(0, 1, 0, a) => rotateY(a)
   [[0, 0, 1].toString(), 'rotate'], // rotate3d(0, 0, 1, a) => rotate(a)
 ]);
-
+/**
+ * @param {valueParser.FunctionNode} node
+ * @param {(number|string)[]} values
+ */
 function rotate3d(node, values) {
   if (values.length !== 4) {
     return;
@@ -77,7 +88,10 @@ function rotate3d(node, values) {
     node.nodes = [nodes[6]];
   }
 }
-
+/**
+ * @param {valueParser.FunctionNode} node
+ * @param {(number|string)[]} values
+ */
 function rotateZ(node, values) {
   if (values.length !== 1) {
     return;
@@ -86,7 +100,10 @@ function rotateZ(node, values) {
   // rotateZ(rz) => rotate(rz)
   node.value = 'rotate';
 }
-
+/**
+ * @param {valueParser.FunctionNode} node
+ * @param {(number|string)[]} values
+ */
 function scale(node, values) {
   if (values.length !== 2) {
     return;
@@ -118,7 +135,10 @@ function scale(node, values) {
     return;
   }
 }
-
+/**
+ * @param {valueParser.FunctionNode} node
+ * @param {(number|string)[]} values
+ */
 function scale3d(node, values) {
   if (values.length !== 3) {
     return;
@@ -151,7 +171,10 @@ function scale3d(node, values) {
     return;
   }
 }
-
+/**
+ * @param {valueParser.FunctionNode} node
+ * @param {(number|string)[]} values
+ */
 function translate(node, values) {
   if (values.length !== 2) {
     return;
@@ -174,7 +197,10 @@ function translate(node, values) {
     return;
   }
 }
-
+/**
+ * @param {valueParser.FunctionNode} node
+ * @param {(number|string)[]} values
+ */
 function translate3d(node, values) {
   if (values.length !== 3) {
     return;
@@ -199,6 +225,7 @@ const reducers = new Map([
   ['translate3d', translate3d],
 ]);
 
+/** @param {string} name */
 function normalizeReducerName(name) {
   const lowerCasedName = name.toLowerCase();
 
@@ -208,7 +235,7 @@ function normalizeReducerName(name) {
 
   return lowerCasedName;
 }
-
+/** @param {valueParser.Node} node */
 function reduce(node) {
   if (node.type === 'function') {
     const normalizedReducerName = normalizeReducerName(node.value);
@@ -219,7 +246,10 @@ function reduce(node) {
   }
   return false;
 }
-
+/**
+ * @type {import('postcss').PluginCreator<void>}
+ * @return {import('postcss').Plugin}
+ */
 function pluginCreator() {
   return {
     postcssPlugin: 'postcss-reduce-transforms',
