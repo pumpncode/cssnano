@@ -13,9 +13,10 @@ function checkMatch(nodeA, nodeB) {
   return nodeA.type === nodeB.type;
 }
 
+/** @typedef {import('postcss').ChildNode & {parent?: Child}} Child
 /**
- * @param {import('postcss').ChildNode} nodeA
- * @param {import('postcss').ChildNode} nodeB
+ * @param {Child} nodeA
+ * @param {Child} nodeB
  * @return {boolean}
  */
 export default function sameParent(nodeA, nodeB) {

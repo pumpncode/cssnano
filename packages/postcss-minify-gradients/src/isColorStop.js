@@ -23,11 +23,14 @@ const lengthUnits = new Set([
   'VMAX',
   '%',
 ]);
-
+/** @param {string} input */
 function isCSSLengthUnit(input) {
   return lengthUnits.has(input.toUpperCase());
 }
-
+/**
+ * @param {string|undefined} str
+ * @return {boolean}
+ */
 function isStop(str) {
   if (str) {
     let stop = false;
@@ -44,7 +47,8 @@ function isStop(str) {
   }
   return true;
 }
-
+/** @param {string} color
+ * @param {string=} stop */
 export default function isColorStop(color, stop) {
   return colord(color).isValid() && isStop(stop);
 }

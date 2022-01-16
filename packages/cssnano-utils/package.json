@@ -3,6 +3,7 @@
   "version": "3.0.1",
   "repository": "cssnano/cssnano",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "description": "Utility methods and plugin for cssnano projects",
   "scripts": {
     "prebuild": "rimraf dist",
@@ -18,7 +19,8 @@
   },
   "files": [
     "dist",
-    "LICENSE"
+    "LICENSE",
+    "types"
   ],
   "license": "MIT",
   "devDependencies": {
