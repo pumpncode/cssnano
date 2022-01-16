@@ -1,3 +1,5 @@
+/**
+ * @type {import('postcss').PluginCreator<void>} */
 const pluginCreator = () => {
   return {
     postcssPlugin: 'cssnano-util-raw-cache',
