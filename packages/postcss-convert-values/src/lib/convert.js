@@ -15,6 +15,7 @@ const angleConv = new Map([
   ['deg', 1],
 ]);
 
+/** @param {number} number */
 function dropLeadingZero(number) {
   const value = String(number);
 
@@ -31,18 +32,29 @@ function dropLeadingZero(number) {
   return value;
 }
 
+/**
+ * @param {number} number
+ * @param {string} originalUnit
+ * @param {Map<string, number>} conversions
+ */
 function transform(number, originalUnit, conversions) {
   let conversionUnits = [...conversions.keys()].filter((u) => {
     return originalUnit !== u;
   });
 
-  const base = number * conversions.get(originalUnit);
-
+  const base = number * /** @type {number} */ (conversions.get(originalUnit));
   return conversionUnits
-    .map((u) => dropLeadingZero(base / conversions.get(u)) + u)
+    .map(
+      (u) =>
+        dropLeadingZero(base / /** @type {number} */ (conversions.get(u))) + u
+    )
     .reduce((a, b) => (a.length < b.length ? a : b));
 }
-
+/**
+ * @param {number} number
+ * @param {string} unit
+ * @param {{time?: boolean, length?: boolean, angle?: boolean}} options
+ */
 export default function (number, unit, { time, length, angle }) {
   let value = dropLeadingZero(number) + (unit ? unit : '');
   let converted;

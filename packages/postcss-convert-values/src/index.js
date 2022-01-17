@@ -35,10 +35,12 @@ const keepWhenZero = new Set([
   'line-height',
 ]);
 
-/*
+/**
  * Numbers without digits after the dot are technically invalid,
  * but in that case css-value-parser returns the dot as part of the unit,
  * so we use this to remove the dot.
+ *
+ * @param {string} item
  */
 function stripLeadingDot(item) {
   if (item.charCodeAt(0) === '.'.charCodeAt(0)) {
@@ -47,7 +49,11 @@ function stripLeadingDot(item) {
     return item;
   }
 }
-
+/**
+ * @param {valueParser.Node} node
+ * @param {PostcssConvertValueOptions} opts
+ * @param {boolean} keepZeroUnit
+ */
 function parseWord(node, opts, keepZeroUnit) {
   const pair = unit(node.value);
   if (pair) {
@@ -74,7 +80,7 @@ function parseWord(node, opts, keepZeroUnit) {
     }
   }
 }
-
+/** @param {valueParser.WordNode} node */
 function clampOpacity(node) {
   const pair = unit(node.value);
   if (!pair) {
@@ -87,21 +93,28 @@ function clampOpacity(node) {
     node.value = 0 + pair.unit;
   }
 }
-
+/** @param {import('postcss').Declaration} decl */
 function shouldKeepZeroUnit(decl) {
   const { parent } = decl;
   const lowerCasedProp = decl.prop.toLowerCase();
   return (
     (decl.value.includes('%') &&
       (lowerCasedProp === 'max-height' || lowerCasedProp === 'height')) ||
-    (parent.parent &&
-      parent.parent.name &&
-      parent.parent.name.toLowerCase() === 'keyframes' &&
+    (parent &&
+      parent.parent &&
+      parent.parent.type === 'atrule' &&
+      /** @type {import('postcss').AtRule} */ (
+        parent.parent
+      ).name.toLowerCase() === 'keyframes' &&
       lowerCasedProp === 'stroke-dasharray') ||
     keepWhenZero.has(lowerCasedProp)
   );
 }
 
+/**
+ * @param {PostcssConvertValueOptions} opts
+ * @param {import('postcss').Declaration} decl
+ */
 function transform(opts, decl) {
   const lowerCasedProp = decl.prop.toLowerCase();
   if (
@@ -149,7 +162,13 @@ function transform(opts, decl) {
 }
 
 const plugin = 'postcss-convert-values';
-
+/**
+ * @typedef {{precision: boolean | number, angle?: boolean, time?: boolean, length?: boolean}} PostcssConvertValueOptions */
+/**
+ * @type {import('postcss').PluginCreator<PostcssConvertValueOptions>}
+ * @param {PostcssConvertValueOptions} opts
+ * @return {import('postcss').Plugin}
+ */
 function pluginCreator(opts = { precision: false }) {
   return {
     postcssPlugin: plugin,
