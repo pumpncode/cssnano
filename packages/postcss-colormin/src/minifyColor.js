@@ -8,7 +8,8 @@ extend([namesPlugin, minifierPlugin]);
  * Performs color value minification
  *
  * @param {string} input - CSS value
- * @param {boolean} options - object with colord.minify() options
+ * @param {Record<string, boolean>} options  object with colord.minify() options
+ * @return {string}
  */
 export default function minifyColor(input, options = {}) {
   const instance = colord(input);

@@ -24,6 +24,7 @@
     {"path": "packages/postcss-reduce-transforms"},
     {"path": "packages/cssnano-utils"},
     {"path": "packages/postcss-convert-values"},
+    {"path": "packages/postcss-colormin"},
     {"path": "packages/postcss-normalize-whitespace"}
   ],
   "files": []
