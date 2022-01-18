@@ -1,5 +1,6 @@
 import { stringify } from 'postcss-value-parser';
 
+/** @param {string[]} list */
 function uniqueFontFamilies(list) {
   return list.filter((item, i) => {
     if (item.toLowerCase() === 'monospace') {
@@ -19,6 +20,10 @@ const genericFontFamilykeywords = new Set([
   'system-ui',
 ]);
 
+/**
+ * @param {unknown} value
+ * @param {number} length
+ */
 function makeArray(value, length) {
   let array = [];
   while (length--) {
@@ -29,7 +34,10 @@ function makeArray(value, length) {
 
 // eslint-disable-next-line no-useless-escape
 const regexSimpleEscapeCharacters = /[ !"#$%&'()*+,.\/;<=>?@\[\\\]^`{|}~]/;
-
+/**
+ * @param {string} string
+ * @param {boolean} escapeForString
+ */
 function escape(string, escapeForString) {
   let counter = 0;
   let character = null;
@@ -83,10 +91,11 @@ const regexIdentifierCharacter = /^[a-zA-Z\d\xa0-\uffff_-]+$/;
 const regexConsecutiveSpaces = /(\\(?:[a-fA-F0-9]{1,6}\x20|\x20))?(\x20{2,})/g;
 const regexTrailingEscape = /\\[a-fA-F0-9]{0,6}\x20$/;
 const regexTrailingSpace = /\x20$/;
-
+/** @param {string} string */
 function escapeIdentifierSequence(string) {
   let identifiers = string.split(regexWhitespace);
   let index = 0;
+  /** @type {string[] | string} */
   let result = [];
   let escapeResult;
 
@@ -150,9 +159,15 @@ function escapeIdentifierSequence(string) {
 
   return result;
 }
-
+/**
+ * @param {import('postcss-value-parser').Node[]} nodes
+ * @param {import('../index').PostCssMinifyFontValueOptions} opts
+ * @return {import('postcss-value-parser').WordNode[]}
+ */
 export default function (nodes, opts) {
+  /** @type {import('postcss-value-parser').Node[]} */
   const family = [];
+  /** @type {import('postcss-value-parser').WordNode | null} */
   let last = null;
   let i, max;
 
@@ -161,7 +176,7 @@ export default function (nodes, opts) {
       family.push(node);
     } else if (node.type === 'word') {
       if (!last) {
-        last = { type: 'word', value: '' };
+        last = { type: 'word', value: '', sourceEndIndex: 0, sourceIndex: 0 };
         family.push(last);
       }
 
@@ -214,6 +229,8 @@ export default function (nodes, opts) {
     {
       type: 'word',
       value: normalizedFamilies.join(),
+      sourceIndex: 0,
+      sourceEndIndex: 0,
     },
   ];
 }

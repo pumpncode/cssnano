@@ -1,3 +1,4 @@
+/** @param {string} value */
 export default function (value) {
   const lowerCasedValue = value.toLowerCase();
 

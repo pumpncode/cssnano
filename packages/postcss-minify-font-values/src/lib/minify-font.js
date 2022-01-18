@@ -2,9 +2,13 @@ import { unit } from 'postcss-value-parser';
 import keywords from './keywords';
 import minifyFamily from './minify-family';
 import minifyWeight from './minify-weight';
-
+/**
+ * @param {import('postcss-value-parser').Node[]} nodes
+ * @param {import('../index').PostCssMinifyFontValueOptions} opts
+ */
 export default function (nodes, opts) {
-  let i, max, node, familyStart, family;
+  let i, max, node, family;
+  let familyStart = NaN;
   let hasSize = false;
 
   for (i = 0, max = nodes.length; i < max; i += 1) {
