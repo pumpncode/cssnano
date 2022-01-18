@@ -3,9 +3,11 @@
   "version": "5.1.2",
   "description": "Minify selectors with PostCSS.",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "files": [
     "dist",
-    "LICENSE-MIT"
+    "LICENSE-MIT",
+    "types"
   ],
   "scripts": {
     "prebuild": "rimraf dist",

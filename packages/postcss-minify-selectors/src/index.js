@@ -7,7 +7,7 @@ const pseudoElements = new Set([
   '::first-letter',
   '::first-line',
 ]);
-
+/** @param {parser.Attribute} selector */
 function attribute(selector) {
   if (selector.value) {
     if (selector.raws.value) {
@@ -19,35 +19,39 @@ function attribute(selector) {
     }
 
     if (selector.operator) {
-      selector.operator = selector.operator.trim();
+      selector.operator = /** @type {parser.AttributeOperator} */ (
+        selector.operator.trim()
+      );
     }
   }
 
   selector.rawSpaceBefore = '';
   selector.rawSpaceAfter = '';
-  selector.spaces.attribute = { before: '', after: '' };
-  selector.spaces.operator = { before: '', after: '' };
-  selector.spaces.value = {
-    before: '',
-    after: selector.insensitive ? ' ' : '',
-  };
+  if (selector.spaces) {
+    selector.spaces.attribute = { before: '', after: '' };
+    selector.spaces.operator = { before: '', after: '' };
+    selector.spaces.value = {
+      before: '',
+      after: selector.insensitive ? ' ' : '',
+    };
+  }
+  if (selector.raws.spaces) {
+    selector.raws.spaces.attribute = {
+      before: '',
+      after: '',
+    };
 
-  selector.raws.spaces.attribute = {
-    before: '',
-    after: '',
-  };
+    selector.raws.spaces.operator = {
+      before: '',
+      after: '',
+    };
 
-  selector.raws.spaces.operator = {
-    before: '',
-    after: '',
-  };
-
-  selector.raws.spaces.value = {
-    before: '',
-    after: selector.insensitive ? ' ' : '',
-  };
-
-  if (selector.insensitive) {
+    selector.raws.spaces.value = {
+      before: '',
+      after: selector.insensitive ? ' ' : '',
+    };
+  }
+  if (selector.insensitive && selector.raws.spaces) {
     selector.raws.spaces.insensitive = {
       before: '',
       after: '',
@@ -56,7 +60,7 @@ function attribute(selector) {
 
   selector.attribute = selector.attribute.trim();
 }
-
+/** @param {parser.Combinator} selector */
 function combinator(selector) {
   const value = selector.value.trim();
   selector.spaces.before = '';
@@ -73,32 +77,35 @@ const pseudoReplacements = new Map([
   [':nth-last-of-type', ':last-of-type'],
 ]);
 
+/** @param {parser.Pseudo} selector */
 function pseudo(selector) {
   const value = selector.value.toLowerCase();
 
   if (selector.nodes.length === 1 && pseudoReplacements.has(value)) {
     const first = selector.at(0);
-    const one = first.at(0);
 
     if (first.length === 1) {
+      const one = first.at(0);
       if (one.value === '1') {
         selector.replaceWith(
           parser.pseudo({
-            value: pseudoReplacements.get(value),
+            value: /** @type {string} */ (pseudoReplacements.get(value)),
           })
         );
       }
 
-      if (one.value.toLowerCase() === 'even') {
+      if (one.value && one.value.toLowerCase() === 'even') {
         one.value = '2n';
       }
     }
 
     if (first.length === 3) {
+      const one = first.at(0);
       const two = first.at(1);
       const three = first.at(2);
 
       if (
+        one.value &&
         one.value.toLowerCase() === '2n' &&
         two.value === '+' &&
         three.value === '1'
@@ -136,15 +143,15 @@ const tagReplacements = new Map([
   ['from', '0%'],
   ['100%', 'to'],
 ]);
-
+/** @param {parser.Tag} selector */
 function tag(selector) {
   const value = selector.value.toLowerCase();
 
   if (tagReplacements.has(value)) {
-    selector.value = tagReplacements.get(value);
+    selector.value = /** @type {string} */ (tagReplacements.get(value));
   }
 }
-
+/** @param {parser.Universal} selector */
 function universal(selector) {
   const next = selector.next();
 
@@ -153,18 +160,23 @@ function universal(selector) {
   }
 }
 
-const reducers = new Map([
-  ['attribute', attribute],
-  ['combinator', combinator],
-  ['pseudo', pseudo],
-  ['tag', tag],
-  ['universal', universal],
-]);
-
+/** @type {Map<string, (selector: parser.Node) => void>} */
+const reducers = new Map(
+  /** @type {[string, ((selector: parser.Node) => void)][]}*/ ([
+    ['attribute', attribute],
+    ['combinator', combinator],
+    ['pseudo', pseudo],
+    ['tag', tag],
+    ['universal', universal],
+  ])
+);
+/**
+ * @type {import('postcss').PluginCreator<void>}
+ * @return {import('postcss').Plugin}
+ */
 function pluginCreator() {
   return {
     postcssPlugin: 'postcss-minify-selectors',
-
     OnceExit(css) {
       const cache = new Map();
       const processor = parser((selectors) => {
@@ -181,7 +193,11 @@ function pluginCreator() {
 
           const toString = String(sel);
 
-          if (sel.type === 'selector' && sel.parent.type !== 'pseudo') {
+          if (
+            sel.type === 'selector' &&
+            sel.parent &&
+            sel.parent.type !== 'pseudo'
+          ) {
             if (!uniqueSelectors.has(toString)) {
               uniqueSelectors.add(toString);
             } else {
