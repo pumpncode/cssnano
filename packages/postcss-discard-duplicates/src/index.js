@@ -1,17 +1,25 @@
+/** @param {string|undefined} value */
 function trimValue(value) {
   return value ? value.trim() : value;
 }
-
+/** @param {{nodes: import('postcss').Node[]}} node */
 function empty(node) {
   return !node.nodes.filter((child) => child.type !== 'comment').length;
 }
 
+/**
+ * @param {import('postcss').AnyNode} a
+ * @param {import('postcss').AnyNode} b
+ */
 function equals(a, b) {
   if (a.type !== b.type) {
     return false;
   }
 
-  if (a.important !== b.important) {
+  if (
+    /** @type {import('postcss').Declaration} */ (a).important !==
+    /** @type {import('postcss').Declaration} */ (b).important
+  ) {
     return false;
   }
 
@@ -21,12 +29,15 @@ function equals(a, b) {
 
   switch (a.type) {
     case 'rule':
-      if (a.selector !== b.selector) {
+      if (a.selector !== /** @type {import('postcss').Rule} */ (b).selector) {
         return false;
       }
       break;
     case 'atrule':
-      if (a.name !== b.name || a.params !== b.params) {
+      if (
+        a.name !== /** @type {import('postcss').AtRule} */ (b).name ||
+        a.params !== /** @type {import('postcss').AtRule} */ (b).params
+      ) {
         return false;
       }
 
@@ -42,7 +53,10 @@ function equals(a, b) {
       }
       break;
     case 'decl':
-      if (a.prop !== b.prop || a.value !== b.value) {
+      if (
+        a.prop !== /** @type {import('postcss').Declaration} */ (b).prop ||
+        a.value !== /** @type {import('postcss').Declaration} */ (b).value
+      ) {
         return false;
       }
 
@@ -52,7 +66,7 @@ function equals(a, b) {
       break;
   }
 
-  if (a.nodes) {
+  if ('nodes' in a && 'nodes' in b) {
     if (a.nodes.length !== b.nodes.length) {
       return false;
     }
@@ -65,7 +79,10 @@ function equals(a, b) {
   }
   return true;
 }
-
+/**
+ * @param {import('postcss').Rule} last
+ * @param {import('postcss').AnyNode[]} nodes
+ */
 function dedupeRule(last, nodes) {
   let index = nodes.indexOf(last) - 1;
   while (index >= 0) {
@@ -77,13 +94,16 @@ function dedupeRule(last, nodes) {
         }
       });
 
-      if (empty(node)) {
+      if (empty(/** @type {import('postcss').Rule}*/ (node))) {
         node.remove();
       }
     }
   }
 }
-
+/**
+ * @param {import('postcss').AtRule | import('postcss').Declaration} last
+ * @param {import('postcss').AnyNode[]} nodes
+ */
 function dedupeNode(last, nodes) {
   let index = nodes.includes(last) ? nodes.indexOf(last) - 1 : nodes.length - 1;
 
@@ -95,28 +115,32 @@ function dedupeNode(last, nodes) {
   }
 }
 
+/**
+ * @param {import('postcss').AnyNode} root
+ * */
 function dedupe(root) {
-  const { nodes } = root;
+  if ('nodes' in root) {
+    const { nodes } = root;
 
-  if (!nodes) {
-    return;
-  }
-
-  let index = nodes.length - 1;
-  while (index >= 0) {
-    let last = nodes[index--];
-    if (!last || !last.parent) {
-      continue;
-    }
-    dedupe(last);
-    if (last.type === 'rule') {
-      dedupeRule(last, nodes);
-    } else if (last.type === 'atrule' || last.type === 'decl') {
-      dedupeNode(last, nodes);
+    let index = nodes.length - 1;
+    while (index >= 0) {
+      let last = nodes[index--];
+      if (!last || !last.parent) {
+        continue;
+      }
+      dedupe(last);
+      if (last.type === 'rule') {
+        dedupeRule(last, nodes);
+      } else if (last.type === 'atrule' || last.type === 'decl') {
+        dedupeNode(last, nodes);
+      }
     }
   }
 }
-
+/**
+ * @type {import('postcss').PluginCreator<void>}
+ * @return {import('postcss').Plugin}
+ */
 function pluginCreator() {
   return {
     postcssPlugin: 'postcss-discard-duplicates',
