@@ -26,6 +26,7 @@
     {"path": "packages/postcss-convert-values"},
     {"path": "packages/postcss-colormin"},
     {"path": "packages/postcss-minify-selectors"},
+    {"path": "packages/postcss-minify-params"},
     {"path": "packages/postcss-normalize-whitespace"}
   ],
   "files": []

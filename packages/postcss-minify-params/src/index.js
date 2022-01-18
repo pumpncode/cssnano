@@ -5,33 +5,41 @@ import { getArguments } from 'cssnano-utils';
 /**
  * Return the greatest common divisor
  * of two numbers.
+ *
+ * @param {number} a
+ * @param {number} b
+ * @return {number}
  */
-
 function gcd(a, b) {
   return b ? gcd(b, a % b) : a;
 }
-
+/**
+ * @param {number} a
+ * @param {number} b
+ */
 function aspectRatio(a, b) {
   const divisor = gcd(a, b);
 
   return [a / divisor, b / divisor];
 }
-
+/** @param {valueParser.Node[]} args */
 function split(args) {
   return args.map((arg) => stringify(arg)).join('');
 }
-
+/** @param {valueParser.Node} node */
 function removeNode(node) {
   node.value = '';
   node.type = 'word';
 }
-
+/** @param {unknown[]} items */
 function sortAndDedupe(items) {
   const a = [...new Set(items)];
   a.sort();
   return a.join();
 }
-
+/**
+ * @param {boolean} legacy
+ * @param {import('postcss').AtRule} rule */
 function transform(legacy, rule) {
   const ruleName = rule.name.toLowerCase();
 
@@ -93,11 +101,15 @@ function transform(legacy, rule) {
     rule.raws.afterName = '';
   }
 }
-
+/** @param {string} browser */
 function hasAllBug(browser) {
   return ['ie 10', 'ie 11'].includes(browser);
 }
-
+/**
+ * @type {import('postcss').PluginCreator<browserslist.Options>}
+ * @param {browserslist.Options} options
+ * @return {import('postcss').Plugin}
+ */
 function pluginCreator(options = {}) {
   const browsers = browserslist(null, {
     stats: options.stats,
