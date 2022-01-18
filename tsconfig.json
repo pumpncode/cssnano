@@ -31,7 +31,8 @@
     {"path": "packages/postcss-minify-font-values"},
     {"path": "packages/postcss-discard-duplicates"},
     {"path": "packages/postcss-discard-overridden"},
-    {"path": "packages/postcss-normalize-whitespace"}
+    {"path": "packages/postcss-normalize-whitespace"},
+    {"path": "packages/postcss-normalize-repeat-style"}
   ],
   "files": []
 }
