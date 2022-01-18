@@ -3,9 +3,11 @@
   "version": "5.0.3",
   "description": "Normalize keyword values for position into length values.",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "files": [
     "dist",
-    "LICENSE-MIT"
+    "LICENSE-MIT",
+    "types"
   ],
   "scripts": {
     "prebuild": "rimraf dist",

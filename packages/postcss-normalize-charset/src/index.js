@@ -4,7 +4,11 @@ const nonAscii = /[^\x00-\x7F]/;
 /**
  * @typedef {{add: boolean}} PostcssNormalizeCharsetOptions
  */
-/** @param {PostcssNormalizeCharsetOptions} opts */
+/**
+ * @type {import('postcss').PluginCreator<PostcssNormalizeCharsetOptions>}
+ * @param {PostcssNormalizeCharsetOptions} opts
+ * @return {import('postcss').Plugin}
+ */
 function pluginCreator(opts = { add: true }) {
   return {
     postcssPlugin: 'postcss-normalize-' + charset,

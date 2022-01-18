@@ -33,7 +33,8 @@
     {"path": "packages/postcss-discard-overridden"},
     {"path": "packages/postcss-normalize-whitespace"},
     {"path": "packages/postcss-unique-selectors"},
-    {"path": "packages/postcss-normalize-repeat-style"}
+    {"path": "packages/postcss-normalize-repeat-style"},
+    {"path": "packages/postcss-normalize-positions"}
   ],
   "files": []
 }
