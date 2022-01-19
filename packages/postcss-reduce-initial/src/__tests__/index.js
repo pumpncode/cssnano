@@ -1,6 +1,6 @@
 import { test } from 'uvu';
-import fromInitial from '../../data/fromInitial.json';
-import toInitial from '../../data/toInitial.json';
+import fromInitial from '../data/fromInitial.json';
+import toInitial from '../data/toInitial.json';
 import {
   usePostCSSPlugin,
   processCSSFactory,

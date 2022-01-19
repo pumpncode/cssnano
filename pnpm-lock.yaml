@@ -445,6 +445,7 @@ importers:
 
   packages/postcss-reduce-initial:
     specifiers:
+      '@types/caniuse-api': ^3.0.2
       browserslist: ^4.16.6
       caniuse-api: ^3.0.0
       postcss: ^8.2.15
@@ -452,6 +453,7 @@ importers:
       browserslist: 4.19.1
       caniuse-api: 3.0.0
     devDependencies:
+      '@types/caniuse-api': 3.0.2
       postcss: 8.4.5
 
   packages/postcss-reduce-transforms:

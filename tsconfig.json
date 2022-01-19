@@ -35,7 +35,9 @@
     {"path": "packages/postcss-unique-selectors"},
     {"path": "packages/postcss-normalize-repeat-style"},
     {"path": "packages/postcss-normalize-positions"},
-    {"path": "packages/postcss-normalize-unicode"}
+    {"path": "packages/postcss-normalize-unicode"},
+    {"path": "packages/postcss-reduce-initial"},
+    {"path": "packages/postcss-merge-rules"}
   ],
   "files": []
 }

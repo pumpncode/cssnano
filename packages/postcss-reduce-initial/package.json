@@ -3,10 +3,12 @@
   "version": "5.0.2",
   "description": "Reduce initial definitions to the actual initial value, where possible.",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "files": [
-    "data",
+    "src/data",
     "dist/index.js",
-    "LICENSE-MIT"
+    "LICENSE-MIT",
+    "types"
   ],
   "scripts": {
     "acquire": "node ./src/script/acquire.mjs",
@@ -38,6 +40,7 @@
     "node": "^10 || ^12 || >=14.0"
   },
   "devDependencies": {
+    "@types/caniuse-api": "^3.0.2",
     "postcss": "^8.2.15"
   },
   "peerDependencies": {
