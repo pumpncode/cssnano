@@ -37,7 +37,7 @@
     {"path": "packages/postcss-normalize-positions"},
     {"path": "packages/postcss-normalize-unicode"},
     {"path": "packages/postcss-reduce-initial"},
-    {"path": "packages/postcss-merge-rules"}
+    {"path": "packages/postcss-zindex"}
   ],
   "files": []
 }

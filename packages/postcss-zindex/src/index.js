@@ -1,5 +1,10 @@
 import LayerCache from './lib/layerCache';
-
+/** @typedef {{startIndex?: number}} PostCssZindexOptions */
+/**
+ * @type {import('postcss').PluginCreator<PostCssZindexOptions>}
+ * @param {PostCssZindexOptions} opts
+ * @return {import('postcss').Plugin}
+ */
 function pluginCreator(opts = {}) {
   return {
     postcssPlugin: 'postcss-zindex',
@@ -7,6 +12,7 @@ function pluginCreator(opts = {}) {
       const cache = new LayerCache();
       return {
         OnceExit(css) {
+          /** @type {import('postcss').Declaration[]} */
           const nodes = [];
           let abort = false;
 
