@@ -1,8 +1,5 @@
 import selectorParser from 'postcss-selector-parser';
 
-const atrule = 'atrule';
-const decl = 'decl';
-const rule = 'rule';
 /**
  * @param {{value: string}} arg
  * @param {(input: string) => string[]} comma
@@ -10,13 +7,14 @@ const rule = 'rule';
  * @return {string[]}
  */
 function splitValues({ value }, comma, space) {
+  /** @type {string[]} */
   let result = [];
   for (const val of comma(value)) {
     result = result.concat(space(val));
   }
   return result;
 }
-
+/** @param {{atRules: import('postcss').AtRule[], values: string[]}} arg */
 function filterAtRule({ atRules, values }) {
   const uniqueValues = new Set(values);
   atRules.forEach((node) => {
@@ -27,7 +25,7 @@ function filterAtRule({ atRules, values }) {
     }
   });
 }
-
+/** @param {{atRules: import('postcss').AtRule[], rules: string[]}} arg */
 function filterNamespace({ atRules, rules }) {
   const uniqueRules = new Set(rules);
   atRules.forEach((atRule) => {
@@ -44,16 +42,28 @@ function filterNamespace({ atRules, rules }) {
     }
   });
 }
-
+/**
+ * @param {string} fontFamily
+ * @param {string[]} cache
+ * @param {(input: string) => string[]} comma
+ */
 function hasFont(fontFamily, cache, comma) {
   return comma(fontFamily).some((font) => cache.some((c) => c.includes(font)));
 }
 
-// fonts have slightly different logic
+/** fonts have slightly different logic
+ * @param {{atRules: import('postcss').AtRule[], values: string[]}} cache
+ * @param {(input: string) => string[]} comma
+ */
 function filterFont({ atRules, values }, comma) {
   values = [...new Set(values)];
   atRules.forEach((r) => {
-    const families = r.nodes.filter(({ prop }) => prop === 'font-family');
+    /** @type {import('postcss').Declaration[]} */
+    const families = /** @type {import('postcss').Declaration[]} */ (
+      r.nodes.filter(
+        (node) => node.type === 'decl' && node.prop === 'font-family'
+      )
+    );
 
     // Discard the @font-face if it has no font-family
     if (!families.length) {
@@ -67,7 +77,12 @@ function filterFont({ atRules, values }, comma) {
     });
   });
 }
-
+/**@typedef {{fontFace?: boolean, counterStyle?: boolean, keyframes?: boolean, namespace?: boolean}} PostCssDiscardUnusedOptions */
+/**
+ * @type {import('postcss').PluginCreator<PostCssDiscardUnusedOptions>}
+ * @param {PostCssDiscardUnusedOptions} opts
+ * @return {import('postcss').Plugin}
+ */
 function pluginCreator(opts) {
   const { fontFace, counterStyle, keyframes, namespace } = Object.assign(
     {},
@@ -84,36 +99,44 @@ function pluginCreator(opts) {
     postcssPlugin: 'postcss-discard-unused',
 
     prepare() {
+      /** @type {{atRules: import('postcss').AtRule[], values: string[]}} */
       const counterStyleCache = { atRules: [], values: [] };
+      /** @type {{atRules: import('postcss').AtRule[], values: string[]}} */
       const keyframesCache = { atRules: [], values: [] };
+      /** @type {{atRules: import('postcss').AtRule[], rules: string[]}} */
       const namespaceCache = { atRules: [], rules: [] };
+      /** @type {{atRules: import('postcss').AtRule[], values: string[]}} */
       const fontCache = { atRules: [], values: [] };
 
       return {
         OnceExit(css, { list }) {
           const { comma, space } = list;
           css.walk((node) => {
-            const { type, prop, selector, name } = node;
-
-            if (type === rule && namespace && selector.includes('|')) {
-              if (selector.includes('[')) {
+            if (
+              node.type === 'rule' &&
+              namespace &&
+              node.selector.includes('|')
+            ) {
+              if (node.selector.includes('[')) {
                 // Attribute selector, so we should parse further.
                 selectorParser((ast) => {
                   ast.walkAttributes(({ namespace: ns }) => {
-                    namespaceCache.rules = namespaceCache.rules.concat(ns);
+                    namespaceCache.rules = namespaceCache.rules.concat(
+                      /** @type{string}*/ (ns)
+                    );
                   });
-                }).process(selector);
+                }).process(node.selector);
               } else {
                 // Use a simple split function for the namespace
                 namespaceCache.rules = namespaceCache.rules.concat(
-                  selector.split('|')[0]
+                  node.selector.split('|')[0]
                 );
               }
               return;
             }
 
-            if (type === decl) {
-              if (counterStyle && /list-style|system/.test(prop)) {
+            if (node.type === 'decl') {
+              if (counterStyle && /list-style|system/.test(node.prop)) {
                 counterStyleCache.values = counterStyleCache.values.concat(
                   splitValues(node, comma, space)
                 );
@@ -121,15 +144,16 @@ function pluginCreator(opts) {
 
               if (
                 fontFace &&
-                node.parent.type === rule &&
-                /font(|-family)/.test(prop)
+                node.parent &&
+                node.parent.type === 'rule' &&
+                /font(|-family)/.test(node.prop)
               ) {
                 fontCache.values = fontCache.values.concat(
                   comma(node.value.toLowerCase())
                 );
               }
 
-              if (keyframes && /animation/.test(prop)) {
+              if (keyframes && /animation/.test(node.prop)) {
                 keyframesCache.values = keyframesCache.values.concat(
                   splitValues(node, comma, space)
                 );
@@ -138,20 +162,20 @@ function pluginCreator(opts) {
               return;
             }
 
-            if (type === atrule) {
-              if (counterStyle && /counter-style/.test(name)) {
+            if (node.type === 'atrule') {
+              if (counterStyle && /counter-style/.test(node.name)) {
                 counterStyleCache.atRules.push(node);
               }
 
-              if (fontFace && name === 'font-face' && node.nodes) {
+              if (fontFace && node.name === 'font-face' && node.nodes) {
                 fontCache.atRules.push(node);
               }
 
-              if (keyframes && /keyframes/.test(name)) {
+              if (keyframes && /keyframes/.test(node.name)) {
                 keyframesCache.atRules.push(node);
               }
 
-              if (namespace && name === 'namespace') {
+              if (namespace && node.name === 'namespace') {
                 namespaceCache.atRules.push(node);
               }
 

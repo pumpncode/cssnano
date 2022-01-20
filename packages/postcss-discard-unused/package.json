@@ -3,10 +3,12 @@
   "version": "5.0.2",
   "description": "Discard unused counter styles, keyframes and fonts.",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "files": [
     "bin",
     "LICENSE-MIT",
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "prebuild": "rimraf dist",
