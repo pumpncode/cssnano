@@ -39,7 +39,8 @@
     {"path": "packages/postcss-reduce-initial"},
     {"path": "packages/postcss-zindex"},
     {"path": "packages/postcss-discard-unused"},
-    {"path": "packages/postcss-ordered-values"}
+    {"path": "packages/postcss-ordered-values"},
+    {"path": "packages/postcss-normalize-url"}
   ],
   "files": []
 }
