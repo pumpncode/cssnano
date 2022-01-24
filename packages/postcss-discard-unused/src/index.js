@@ -77,10 +77,10 @@ function filterFont({ atRules, values }, comma) {
     });
   });
 }
-/**@typedef {{fontFace?: boolean, counterStyle?: boolean, keyframes?: boolean, namespace?: boolean}} PostCssDiscardUnusedOptions */
+/**@typedef {{fontFace?: boolean, counterStyle?: boolean, keyframes?: boolean, namespace?: boolean}} Options */
 /**
- * @type {import('postcss').PluginCreator<PostCssDiscardUnusedOptions>}
- * @param {PostCssDiscardUnusedOptions} opts
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} opts
  * @return {import('postcss').Plugin}
  */
 function pluginCreator(opts) {

@@ -1,4 +1,4 @@
-/** @param {import('../index.js').PostCssRemoveCommentsOptions} options */
+/** @param {import('../index.js').Options} options */
 function CommentRemover(options) {
   this.options = options;
 }

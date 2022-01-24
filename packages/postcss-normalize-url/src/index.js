@@ -116,9 +116,10 @@ function transformDecl(decl, opts) {
     })
     .toString();
 }
+/** @typedef {normalize.Options} Options */
 /**
- * @type {import('postcss').PluginCreator<normalize.Options>}
- * @param {normalize.Options} opts
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} opts
  * @return {import('postcss').Plugin}
  */
 function pluginCreator(opts) {

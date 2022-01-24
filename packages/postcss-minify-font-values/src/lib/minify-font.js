@@ -4,7 +4,7 @@ import minifyFamily from './minify-family';
 import minifyWeight from './minify-weight';
 /**
  * @param {import('postcss-value-parser').Node[]} nodes
- * @param {import('../index').PostCssMinifyFontValueOptions} opts
+ * @param {import('../index').Options} opts
  */
 export default function (nodes, opts) {
   let i, max, node, family;

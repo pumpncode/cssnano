@@ -11,7 +11,7 @@ function hasVariableFunction(value) {
 /**
  * @param {string} prop
  * @param {string} value
- * @param {PostCssMinifyFontValueOptions} opts
+ * @param {Options} opts
  */
 function transform(prop, value, opts) {
   let lowerCasedProp = prop.toLowerCase();
@@ -34,11 +34,11 @@ function transform(prop, value, opts) {
 
   return value;
 }
-/** @typedef {{removeAfterKeyword?: boolean, removeDuplicates?: boolean, removeQuotes?: boolean}} PostCssMinifyFontValueOptions */
+/** @typedef {{removeAfterKeyword?: boolean, removeDuplicates?: boolean, removeQuotes?: boolean}} Options */
 
 /**
- * @type {import('postcss').PluginCreator<PostCssMinifyFontValueOptions>}
- * @param {PostCssMinifyFontValueOptions} opts
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} opts
  * @return {import('postcss').Plugin}
  */
 function pluginCreator(opts) {

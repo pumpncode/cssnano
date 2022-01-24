@@ -1,18 +1,18 @@
 export default pluginCreator;
-export type PostcssConvertValueOptions = {
+export type Options = {
     precision: boolean | number;
     angle?: boolean;
     time?: boolean;
     length?: boolean;
 };
 /**
- * @typedef {{precision: boolean | number, angle?: boolean, time?: boolean, length?: boolean}} PostcssConvertValueOptions */
+ * @typedef {{precision: boolean | number, angle?: boolean, time?: boolean, length?: boolean}} Options */
 /**
- * @type {import('postcss').PluginCreator<PostcssConvertValueOptions>}
- * @param {PostcssConvertValueOptions} opts
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} opts
  * @return {import('postcss').Plugin}
  */
-declare function pluginCreator(opts?: PostcssConvertValueOptions): import('postcss').Plugin;
+declare function pluginCreator(opts?: Options): import('postcss').Plugin;
 declare namespace pluginCreator {
     const postcss: true;
 }

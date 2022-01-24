@@ -1,14 +1,14 @@
 export default pluginCreator;
-export type PostCssZindexOptions = {
+export type Options = {
     startIndex?: number;
 };
-/** @typedef {{startIndex?: number}} PostCssZindexOptions */
+/** @typedef {{startIndex?: number}} Options */
 /**
- * @type {import('postcss').PluginCreator<PostCssZindexOptions>}
- * @param {PostCssZindexOptions} opts
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} opts
  * @return {import('postcss').Plugin}
  */
-declare function pluginCreator(opts?: PostCssZindexOptions): import('postcss').Plugin;
+declare function pluginCreator(opts?: Options): import('postcss').Plugin;
 declare namespace pluginCreator {
     const postcss: true;
 }

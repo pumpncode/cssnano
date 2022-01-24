@@ -2,11 +2,11 @@ const charset = 'charset';
 // eslint-disable-next-line no-control-regex
 const nonAscii = /[^\x00-\x7F]/;
 /**
- * @typedef {{add: boolean}} PostcssNormalizeCharsetOptions
+ * @typedef {{add: boolean}} Options
  */
 /**
- * @type {import('postcss').PluginCreator<PostcssNormalizeCharsetOptions>}
- * @param {PostcssNormalizeCharsetOptions} opts
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} opts
  * @return {import('postcss').Plugin}
  */
 function pluginCreator(opts = { add: true }) {

@@ -1,13 +1,13 @@
 import CommentRemover from './lib/commentRemover';
 import commentParser from './lib/commentParser';
-/** @typedef {object} PostCssRemoveCommentsOptions
+/** @typedef {object} Options
  *  @property {boolean=} removeAll
  *  @property {boolean=} removeAllButFirst
  *  @property {(s: string) => boolean=} remove
  */
 /**
- * @type {import('postcss').PluginCreator<PostCssRemoveCommentsOptions>}
- * @param {PostCssRemoveCommentsOptions} opts
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} opts
  * @return {import('postcss').Plugin}
  */
 function pluginCreator(opts = {}) {

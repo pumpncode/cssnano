@@ -1,8 +1,8 @@
 import LayerCache from './lib/layerCache';
-/** @typedef {{startIndex?: number}} PostCssZindexOptions */
+/** @typedef {{startIndex?: number}} Options */
 /**
- * @type {import('postcss').PluginCreator<PostCssZindexOptions>}
- * @param {PostCssZindexOptions} opts
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} opts
  * @return {import('postcss').Plugin}
  */
 function pluginCreator(opts = {}) {

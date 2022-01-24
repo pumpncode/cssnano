@@ -261,10 +261,10 @@ function minify(original, cache, preferredQuote) {
   return newValue;
 }
 
-/** @typedef {{preferredQuote?: 'double' | 'single'}} PostCssNormalizeStringOptions */
+/** @typedef {{preferredQuote?: 'double' | 'single'}} Options */
 /**
- * @type {import('postcss').PluginCreator<PostCssNormalizeStringOptions>}
- * @param {PostCssNormalizeStringOptions} opts
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} opts
  * @return {import('postcss').Plugin}
  */
 function pluginCreator(opts) {

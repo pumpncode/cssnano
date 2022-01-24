@@ -51,7 +51,7 @@ function stripLeadingDot(item) {
 }
 /**
  * @param {valueParser.Node} node
- * @param {PostcssConvertValueOptions} opts
+ * @param {Options} opts
  * @param {boolean} keepZeroUnit
  */
 function parseWord(node, opts, keepZeroUnit) {
@@ -112,7 +112,7 @@ function shouldKeepZeroUnit(decl) {
 }
 
 /**
- * @param {PostcssConvertValueOptions} opts
+ * @param {Options} opts
  * @param {import('postcss').Declaration} decl
  */
 function transform(opts, decl) {
@@ -163,10 +163,10 @@ function transform(opts, decl) {
 
 const plugin = 'postcss-convert-values';
 /**
- * @typedef {{precision: boolean | number, angle?: boolean, time?: boolean, length?: boolean}} PostcssConvertValueOptions */
+ * @typedef {{precision: boolean | number, angle?: boolean, time?: boolean, length?: boolean}} Options */
 /**
- * @type {import('postcss').PluginCreator<PostcssConvertValueOptions>}
- * @param {PostcssConvertValueOptions} opts
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} opts
  * @return {import('postcss').Plugin}
  */
 function pluginCreator(opts = { precision: false }) {

@@ -161,7 +161,7 @@ function escapeIdentifierSequence(string) {
 }
 /**
  * @param {import('postcss-value-parser').Node[]} nodes
- * @param {import('../index').PostCssMinifyFontValueOptions} opts
+ * @param {import('../index').Options} opts
  * @return {import('postcss-value-parser').WordNode[]}
  */
 export default function (nodes, opts) {

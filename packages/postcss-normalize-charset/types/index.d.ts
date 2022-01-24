@@ -1,16 +1,16 @@
 export default pluginCreator;
-export type PostcssNormalizeCharsetOptions = {
+export type Options = {
     add: boolean;
 };
 /**
- * @typedef {{add: boolean}} PostcssNormalizeCharsetOptions
+ * @typedef {{add: boolean}} Options
  */
 /**
- * @type {import('postcss').PluginCreator<PostcssNormalizeCharsetOptions>}
- * @param {PostcssNormalizeCharsetOptions} opts
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} opts
  * @return {import('postcss').Plugin}
  */
-declare function pluginCreator(opts?: PostcssNormalizeCharsetOptions): import('postcss').Plugin;
+declare function pluginCreator(opts?: Options): import('postcss').Plugin;
 declare namespace pluginCreator {
     const postcss: true;
 }

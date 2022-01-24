@@ -22,16 +22,16 @@ export type StringAst = {
     };
     quotes: boolean;
 };
-export type PostCssNormalizeStringOptions = {
+export type Options = {
     preferredQuote?: 'double' | 'single';
 };
-/** @typedef {{preferredQuote?: 'double' | 'single'}} PostCssNormalizeStringOptions */
+/** @typedef {{preferredQuote?: 'double' | 'single'}} Options */
 /**
- * @type {import('postcss').PluginCreator<PostCssNormalizeStringOptions>}
- * @param {PostCssNormalizeStringOptions} opts
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} opts
  * @return {import('postcss').Plugin}
  */
-declare function pluginCreator(opts: PostCssNormalizeStringOptions): import('postcss').Plugin;
+declare function pluginCreator(opts: Options): import('postcss').Plugin;
 declare namespace pluginCreator {
     const postcss: true;
 }
