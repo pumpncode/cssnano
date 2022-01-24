@@ -4,6 +4,7 @@ import listStyleTypes from './listStyleTypes.json';
 const definedTypes = new Set(listStyleTypes['list-style-type']);
 
 const definedPosition = new Set(['inside', 'outside']);
+/** @param {import('postcss-value-parser').ParsedValue} listStyle */
 export default function listStyleNormalizer(listStyle) {
   const order = { type: '', position: '', image: '' };
 

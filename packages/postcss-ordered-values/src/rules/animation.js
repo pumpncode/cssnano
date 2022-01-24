@@ -4,6 +4,7 @@ import addSpace from '../lib/addSpace';
 import getValue from '../lib/getValue';
 
 // animation: [ none | <keyframes-name> ] || <time> || <single-timing-function> || <time> || <single-animation-iteration-count> || <single-animation-direction> || <single-animation-fill-mode> || <single-animation-play-state>
+
 const functions = new Set(['steps', 'cubic-bezier', 'frames']);
 const keywords = new Set([
   'ease',
@@ -14,7 +15,6 @@ const keywords = new Set([
   'step-end',
   'step-start',
 ]);
-
 const directions = new Set([
   'normal',
   'reverse',
@@ -25,28 +25,32 @@ const fillModes = new Set(['none', 'forwards', 'backwards', 'both']);
 const playStates = new Set(['running', 'paused']);
 const timeUnits = new Set(['ms', 's']);
 
+/**
+ * @param {string} value
+ * @param {string} type
+ */
 const isTimingFunction = (value, type) => {
   return (type === 'function' && functions.has(value)) || keywords.has(value);
 };
-
+/** @param {string} value */
 const isDirection = (value) => {
   return directions.has(value);
 };
-
+/** @param {string} value */
 const isFillMode = (value) => {
   return fillModes.has(value);
 };
-
+/** @param {string} value */
 const isPlayState = (value) => {
   return playStates.has(value);
 };
-
+/** @param {string} value */
 const isTime = (value) => {
   const quantity = unit(value);
 
   return quantity && timeUnits.has(quantity.unit);
 };
-
+/** @param {string} value */
 const isIterationCount = (value) => {
   const quantity = unit(value);
 
@@ -70,6 +74,7 @@ function normalize(args) {
   const list = [];
 
   for (const arg of args) {
+    /** @type {Record<string, import('postcss-value-parser').Node[]>} */
     const state = {
       name: [],
       duration: [],
@@ -101,7 +106,6 @@ function normalize(args) {
         state.name = [...state.name, node, addSpace()];
       }
     });
-
     list.push([
       ...state.name,
       ...state.duration,

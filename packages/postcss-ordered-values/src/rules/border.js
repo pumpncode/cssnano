@@ -19,7 +19,7 @@ const borderStyles = new Set([
   'inset',
   'outset',
 ]);
-
+/** @param {import('postcss-value-parser').ParsedValue} border */
 export default function normalizeBorder(border) {
   const order = { width: '', style: '', color: '' };
 

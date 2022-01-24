@@ -38,7 +38,8 @@
     {"path": "packages/postcss-normalize-unicode"},
     {"path": "packages/postcss-reduce-initial"},
     {"path": "packages/postcss-zindex"},
-    {"path": "packages/postcss-discard-unused"}
+    {"path": "packages/postcss-discard-unused"},
+    {"path": "packages/postcss-ordered-values"}
   ],
   "files": []
 }

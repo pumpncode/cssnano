@@ -12,6 +12,7 @@ export default function getValue(values) {
  * @return {import('postcss-value-parser').Node[]}
  */
 function flatten(values) {
+  /** @type {import('postcss-value-parser').Node[]} */
   const nodes = [];
   for (const [index, arg] of values.entries()) {
     arg.forEach((val, idx) => {
