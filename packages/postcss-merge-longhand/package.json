@@ -3,9 +3,11 @@
   "version": "5.0.5",
   "description": "Merge longhand properties into shorthand with PostCSS.",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "files": [
     "LICENSE-MIT",
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "prebuild": "rimraf dist",

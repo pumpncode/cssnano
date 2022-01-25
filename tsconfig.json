@@ -42,6 +42,7 @@
     {"path": "packages/postcss-ordered-values"},
     {"path": "packages/postcss-normalize-url"},
     {"path": "packages/postcss-svgo"},
+    {"path": "packages/postcss-merge-longhand"},
     {"path": "packages/cssnano-preset-lite"}
   ],
   "files": []

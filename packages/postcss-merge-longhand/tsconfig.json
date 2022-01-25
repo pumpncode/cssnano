@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": ["src/*", "src/lib/*", "src/lib/decl/*"],
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "src/",
+    "declarationDir": "types",
+    "strict": false
+  }
+}
