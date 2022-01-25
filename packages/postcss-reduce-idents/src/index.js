@@ -3,7 +3,15 @@ import counterReducer from './lib/counter';
 import counterStyleReducer from './lib/counter-style';
 import keyframesReducer from './lib/keyframes';
 import gridTemplateReducer from './lib/grid-template';
-
+/** @typedef {{counter?: boolean, counterStyle?: boolean, 
+              keyframes?: boolean, gridTemplate?: boolean, 
+              encoder?: (value: string, index: number) => string}} Options
+*/
+/**
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} arg
+ * @return {import('postcss').Plugin}
+ */
 function pluginCreator({
   counter = true,
   counterStyle = true,
