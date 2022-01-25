@@ -6,10 +6,14 @@ import { ATRULE, DECL } from '../dictionary/postcss';
 const hacks = '!_$_&_*_)_=_%_+_,_._/_`_]_#_~_?_:_|'.split('_');
 
 export default class LeadingStar extends BasePlugin {
+  /** @param {import('postcss').Result} result */
   constructor(result) {
     super([IE_5_5, IE_6, IE_7], [ATRULE, DECL], result);
   }
-
+  /**
+   * @param {import('postcss').Declaration | import('postcss').AtRule} node
+   * @return {void}
+   */
   detect(node) {
     if (node.type === DECL) {
       // some values are not picked up by before, so ensure they are
@@ -22,7 +26,7 @@ export default class LeadingStar extends BasePlugin {
           });
         }
       });
-      let { before } = node.raws;
+      const { before } = node.raws;
       if (!before) {
         return;
       }

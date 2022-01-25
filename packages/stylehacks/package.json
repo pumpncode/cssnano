@@ -3,9 +3,11 @@
   "version": "5.0.2",
   "description": "Detect/remove browser hacks from CSS files.",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "files": [
     "LICENSE-MIT",
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "prebuild": "rimraf dist",

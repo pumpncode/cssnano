@@ -8,10 +8,11 @@ import { RULE } from '../dictionary/postcss';
 import { BODY, HTML } from '../dictionary/tags';
 
 export default class HtmlCombinatorCommentBody extends BasePlugin {
+  /** @param {import('postcss').Result=} result */
   constructor(result) {
     super([IE_5_5, IE_6, IE_7], [RULE], result);
   }
-
+  /** @param {import('postcss').Rule} rule */
   detect(rule) {
     if (isMixin(rule)) {
       return;
@@ -20,7 +21,9 @@ export default class HtmlCombinatorCommentBody extends BasePlugin {
       parser(this.analyse(rule)).processSync(rule.raws.selector.raw);
     }
   }
-
+  /** @param {import('postcss').Rule} rule
+   *  @return {parser.SyncProcessor<void>}
+   */
   analyse(rule) {
     return (selectors) => {
       selectors.each((selector) => {

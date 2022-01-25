@@ -42,6 +42,7 @@
     {"path": "packages/postcss-ordered-values"},
     {"path": "packages/postcss-normalize-url"},
     {"path": "packages/postcss-svgo"},
+    {"path": "packages/stylehacks"},
     {"path": "packages/postcss-merge-longhand"},
     {"path": "packages/postcss-merge-idents"},
     {"path": "packages/postcss-reduce-idents"},

@@ -1,18 +1,23 @@
 import browserslist from 'browserslist';
 import plugins from './plugins';
-
+/** @typedef {{lint?: boolean}} Options */
+/**
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} opts
+ * @return {import('postcss').Plugin}
+ */
 function pluginCreator(opts = {}) {
   return {
     postcssPlugin: 'stylehacks',
-
     OnceExit(css, { result }) {
+      /** @type {typeof result.opts & browserslist.Options} */
       const resultOpts = result.opts || {};
       const browsers = browserslist(null, {
         stats: resultOpts.stats,
         path: __dirname,
         env: resultOpts.env,
       });
-
+      /** @type {import('./plugin').Plugin[]} */
       const processors = [];
       for (const Plugin of plugins) {
         const hack = new Plugin(result);
@@ -36,7 +41,7 @@ function pluginCreator(opts = {}) {
     },
   };
 }
-
+/** @type {(node: import('postcss').Node) => boolean} */
 pluginCreator.detect = (node) => {
   return plugins.some((Plugin) => {
     const hack = new Plugin();

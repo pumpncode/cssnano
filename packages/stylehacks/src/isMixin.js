@@ -1,3 +1,4 @@
+/** @param {import('postcss').Rule} node */
 export default function isMixin(node) {
   const { selector } = node;
 
