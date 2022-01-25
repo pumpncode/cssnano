@@ -1,3 +1,4 @@
+/** @param {string} data */
 export function encode(data) {
   return data
     .replace(/"/g, "'")

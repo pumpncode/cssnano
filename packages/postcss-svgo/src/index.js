@@ -14,8 +14,8 @@ const escapedQuotes = /\b([\w-]+)\s*=\s*\\"([\S\s]+?)\\"/g;
 
 /**
  * @param {string} input the SVG string
- * @param {boolean} encode whether to encode the result
- * @return {object} the minification result
+ * @param {Options} opts
+ * @return the minification result
  */
 function minifySVG(input, opts) {
   let svg = input;
@@ -29,7 +29,7 @@ function minifySVG(input, opts) {
   }
 
   if (isUriEncoded) {
-    svg = decodedUri;
+    svg = /** @type {string} */ (decodedUri);
   }
 
   if (opts.encode !== undefined) {
@@ -46,9 +46,16 @@ function minifySVG(input, opts) {
     throw new Error(result.error);
   }
 
-  return { result: result.data, isUriEncoded };
+  return {
+    result: /** @type {import('svgo').OptimizedSvg}*/ (result).data,
+    isUriEncoded,
+  };
 }
-
+/**
+ * @param {import('postcss').Declaration} decl
+ * @param {Options} opts
+ * @param {import('postcss').Result} postcssResult
+ */
 function minify(decl, opts, postcssResult) {
   const parsed = valueParser(decl.value);
 
@@ -61,7 +68,9 @@ function minify(decl, opts, postcssResult) {
       return;
     }
 
-    let { value, quote } = node.nodes[0];
+    let { value, quote } = /** @type {valueParser.StringNode} */ (
+      node.nodes[0]
+    );
     let optimizedValue;
 
     try {
@@ -105,7 +114,12 @@ function minify(decl, opts, postcssResult) {
 
   decl.value = minified.toString();
 }
-
+/** @typedef {{encode?: boolean, plugins?: object[]} & import('svgo').OptimizeOptions} Options */
+/**
+ * @type {import('postcss').PluginCreator<Options>}
+ * @param {Options} opts
+ * @return {import('postcss').Plugin}
+ */
 function pluginCreator(opts = {}) {
   return {
     postcssPlugin: PLUGIN,
