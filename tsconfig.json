@@ -43,6 +43,7 @@
     {"path": "packages/postcss-normalize-url"},
     {"path": "packages/postcss-svgo"},
     {"path": "packages/postcss-merge-longhand"},
+    {"path": "packages/postcss-merge-idents"},
     {"path": "packages/cssnano-preset-lite"}
   ],
   "files": []

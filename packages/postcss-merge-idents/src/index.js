@@ -93,7 +93,10 @@ function mergeAtRules(css, pairs) {
     pair.removals.forEach((cached) => cached.remove());
   });
 }
-
+/**
+ * @type {import('postcss').PluginCreator<void>}
+ * @return {import('postcss').Plugin}
+ */
 function pluginCreator() {
   return {
     postcssPlugin: 'postcss-merge-idents',
