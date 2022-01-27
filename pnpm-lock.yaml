@@ -113,10 +113,11 @@ importers:
 
   packages/cssnano-preset-default:
     specifiers:
+      '@types/css-declaration-sorter': ^6.0.1
       css-declaration-sorter: ^6.0.3
       cssnano-utils: ^3.0.1
       postcss: ^8.2.15
-      postcss-calc: ^8.2.0
+      postcss-calc: ^8.2.3
       postcss-colormin: ^5.2.4
       postcss-convert-values: ^5.0.3
       postcss-discard-comments: ^5.0.2
@@ -146,7 +147,7 @@ importers:
     dependencies:
       css-declaration-sorter: 6.1.3_postcss@8.4.5
       cssnano-utils: link:../cssnano-utils
-      postcss-calc: 8.2.0_postcss@8.4.5
+      postcss-calc: 8.2.3_postcss@8.4.5
       postcss-colormin: link:../postcss-colormin
       postcss-convert-values: link:../postcss-convert-values
       postcss-discard-comments: link:../postcss-discard-comments
@@ -174,6 +175,7 @@ importers:
       postcss-svgo: link:../postcss-svgo
       postcss-unique-selectors: link:../postcss-unique-selectors
     devDependencies:
+      '@types/css-declaration-sorter': 6.0.1
       postcss: 8.4.5
 
   packages/cssnano-preset-lite:
@@ -1037,6 +1039,12 @@ packages:
 
   /@types/caniuse-api/3.0.2:
     resolution: {integrity: sha512-YfCDMn7R59n7GFFfwjPAM0zLJQy4UvveC32rOJBmTqJJY8uSRqM4Dc7IJj8V9unA48Qy4nj5Bj3jD6Q8VZ1Seg==}
+    dev: true
+
+  /@types/css-declaration-sorter/6.0.1:
+    resolution: {integrity: sha512-reXoxl/M4PGnuwlGbA8DZZSPEvDVHJwheprLZOjrBvwAZE5PMyB3JmzzrbNux04lHpd59btegrxXDdi5clDADg==}
+    dependencies:
+      postcss: 8.4.5
     dev: true
 
   /@types/is-ci/3.0.0:
@@ -3241,8 +3249,8 @@ packages:
       postcss: 6.0.23
     dev: true
 
-  /postcss-calc/8.2.0_postcss@8.4.5:
-    resolution: {integrity: sha512-PueXCv288diX7OXyJicGNA6Q3+L4xYb2cALTAeFj9X6PXnj+s4pUf1vkZnwn+rldfu2taCA9ondjF93lhRTPFA==}
+  /postcss-calc/8.2.3_postcss@8.4.5:
+    resolution: {integrity: sha512-EGM2EBBWqP57N0E7N7WOLT116PJ39dwHVU01WO4XPPQLJfkL2xVgkMZ+TZvCfapj/uJH07UEfKHQNPHzSw/14Q==}
     peerDependencies:
       postcss: ^8.2.2
     dependencies:

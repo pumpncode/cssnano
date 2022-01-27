@@ -47,7 +47,8 @@
     {"path": "packages/postcss-merge-rules"},
     {"path": "packages/postcss-merge-idents"},
     {"path": "packages/postcss-reduce-idents"},
-    {"path": "packages/cssnano-preset-lite"}
+    {"path": "packages/cssnano-preset-lite"},
+    {"path": "packages/cssnano-preset-default"}
   ],
   "files": []
 }
