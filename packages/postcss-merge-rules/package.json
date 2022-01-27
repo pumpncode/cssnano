@@ -3,9 +3,11 @@
   "version": "5.0.5",
   "description": "Merge CSS rules with PostCSS.",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "files": [
     "LICENSE-MIT",
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "prebuild": "rimraf dist",
@@ -39,6 +41,7 @@
     "node": "^10 || ^12 || >=14.0"
   },
   "devDependencies": {
+    "@types/caniuse-api": "^3.0.2",
     "postcss": "^8.2.15",
     "postcss-discard-comments": "^5.0.2"
   },

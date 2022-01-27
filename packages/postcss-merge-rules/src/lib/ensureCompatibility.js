@@ -27,6 +27,11 @@ function filterPrefixes(selector) {
 const findMsInputPlaceholder = (selector) =>
   ~selector.search(/-ms-input-placeholder/i);
 
+/**
+ * @param {string[]} selectorsA
+ * @param {string[]} selectorsB
+ * @return {boolean}
+ */
 export function sameVendor(selectorsA, selectorsB) {
   let same = (selectors) => selectors.map(filterPrefixes).join();
   let findMsVendor = (selectors) => selectors.find(findMsInputPlaceholder);
@@ -97,11 +102,17 @@ export const pseudoElements = {
   ':valid': formValidation,
   ':visited': cssSel2,
 };
-
+/**
+ * @param {string} selector
+ * @return {boolean}
+ */
 function isCssMixin(selector) {
   return selector[selector.length - 1] === ':';
 }
-
+/**
+ * @param {string} selector
+ * @return {boolean}
+ */
 function isHostPseudoClass(selector) {
   return selector.includes(':host');
 }
@@ -120,7 +131,12 @@ function isSupportedCached(feature, browsers) {
 
   return result;
 }
-
+/**
+ * @param {string[]} selectors
+ * @param{string[]=} browsers
+ * @param{Map<string,boolean>=} compatibilityCache
+ * @return {boolean}
+ */
 export function ensureCompatibility(selectors, browsers, compatibilityCache) {
   // Should not merge mixins
   if (selectors.some(isCssMixin)) {
