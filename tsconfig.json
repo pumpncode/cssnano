@@ -44,6 +44,7 @@
     {"path": "packages/postcss-svgo"},
     {"path": "packages/stylehacks"},
     {"path": "packages/postcss-merge-longhand"},
+    {"path": "packages/postcss-merge-rules"},
     {"path": "packages/postcss-merge-idents"},
     {"path": "packages/postcss-reduce-idents"},
     {"path": "packages/cssnano-preset-lite"}
