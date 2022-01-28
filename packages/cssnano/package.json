@@ -3,6 +3,7 @@
     "version": "5.0.16",
     "description": "A modular minifier, built on top of the PostCSS ecosystem.",
     "main": "dist/index.js",
+    "types": "types/index.d.ts",
     "scripts": {
         "bundle-size": "webpack --json --config src/__tests__/_webpack.config.js | webpack-bundle-size-analyzer",
         "prebuild": "rimraf dist",
@@ -38,7 +39,8 @@
     "files": [
         "dist",
         "LICENSE-MIT",
-        "quickstart.js"
+        "quickstart.js",
+        "types"
     ],
     "tonicExampleFilename": "quickstart.js",
     "bugs": {

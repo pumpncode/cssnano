@@ -5,7 +5,7 @@ import { lilconfigSync } from 'lilconfig';
 
 const cssnano = 'cssnano';
 
-/*
+/**
  * @param {string} moduleId
  * @returns {boolean}
  */
@@ -17,15 +17,19 @@ function isResolvable(moduleId) {
     return false;
   }
 }
-
-/*
+/**
+ * @typedef {string | [string, Record<string, any>] | Function | {plugins: unknown[]}} Preset
+ */
+/**
  * preset can be one of four possibilities:
  * preset = 'default'
  * preset = ['default', {}]
  * preset = function <- to be invoked
  * preset = {plugins: []} <- already invoked function
+ *
+ * @param {any} preset
+ * @return {import('postcss').Plugin[]}
  */
-
 function resolvePreset(preset) {
   let fn, options;
 
@@ -44,7 +48,8 @@ function resolvePreset(preset) {
 
   // Provide an alias for the default preset, as it is built-in.
   if (fn === 'default') {
-    return require('cssnano-preset-default')(options).plugins;
+    return /** @type {any} */ (require('cssnano-preset-default'))(options)
+      .plugins;
   }
 
   // For non-JS setups; we'll need to invoke the preset ourselves.
@@ -70,22 +75,23 @@ function resolvePreset(preset) {
   );
 }
 
-/*
+/**
  * cssnano will look for configuration firstly as options passed
  * directly to it, and failing this it will use lilconfig to
  * load an external file.
+ *
+ * @param {Options} options
  */
-
 function resolveConfig(options) {
   if (options.preset) {
     return resolvePreset(options.preset);
   }
-
+  /** @type {string | undefined} */
   let searchPath = process.cwd();
   let configPath = null;
 
   if (options.configFile) {
-    searchPath = null;
+    searchPath = undefined;
     configPath = path.resolve(process.cwd(), options.configFile);
   }
 
@@ -114,7 +120,12 @@ function resolveConfig(options) {
 
   return resolvePreset(config.config.preset || config.config);
 }
-
+/**
+ * @typedef {{plugins?: (import('postcss').Plugin | string)[], preset?: Preset, configFile?: string}} Options
+ */
+/**
+ * @type {import('postcss').PluginCreator<Record<string, any>>}
+ */
 const cssnanoPlugin = (options = {}) => {
   if (Array.isArray(options.plugins)) {
     if (!options.preset || !options.preset.plugins) {
