@@ -49,6 +49,7 @@
     {"path": "packages/postcss-reduce-idents"},
     {"path": "packages/cssnano-preset-lite"},
     {"path": "packages/cssnano-preset-default"},
+    {"path": "packages/cssnano-preset-advanced"},
     {"path": "packages/cssnano"}
   ],
   "files": []

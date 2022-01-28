@@ -2,6 +2,7 @@
   "name": "cssnano-preset-advanced",
   "version": "5.1.11",
   "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "description": "Advanced optimisations for cssnano; may or may not break your CSS!",
   "scripts": {
     "prebuild": "rimraf dist",
@@ -10,7 +11,8 @@
   },
   "files": [
     "LICENSE-MIT",
-    "dist"
+    "dist",
+    "types"
   ],
   "license": "MIT",
   "dependencies": {
