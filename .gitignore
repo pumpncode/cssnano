@@ -42,5 +42,4 @@ lerna-debug.log*
 .DS_Store
 
 # Generated website files
-site/build
-site/.docusaurus
+site/_site/js

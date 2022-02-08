@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" class="initial">
+  <head>
+    {% include 'head.njk' %}
+    <title>{{ title }}</title>
+  </head>
+
+  <body>
+    {% include 'header.njk' %}
+    <main class="layout">
+      {% include 'sidebar.njk' %}
+      <div id="grid-main">
+        <article id="article" class="stack box">
+          <h1>{{ title }}</h1>
+          {% block inner %}
+		      {{ content | safe }}
+          {% endblock %}
+        </article>
+      </div>
+    </main>
+    {% include 'footer.njk' %}
+  </body>
+</html>
