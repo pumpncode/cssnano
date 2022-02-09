@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "css-declaration-sorter": "Siilwyn/css-declaration-sorter#0fe7533d106df634ca7eaf0939b875c35d125e3f",
+    "@pumpn/css-declaration-sorter": "^6.2.0",
     "cssnano-utils": "^3.0.2",
     "postcss-calc": "^8.2.0",
     "postcss-colormin": "^5.2.5",
