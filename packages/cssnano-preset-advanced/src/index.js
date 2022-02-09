@@ -1,5 +1,5 @@
 'use strict';
-const defaultPreset = require('cssnano-preset-default');
+const defaultPreset = require('@pumpn/cssnano-preset-default');
 const postcssDiscardUnused = require('postcss-discard-unused');
 const postcssMergeIdents = require('postcss-merge-idents');
 const postcssReduceIdents = require('postcss-reduce-idents');

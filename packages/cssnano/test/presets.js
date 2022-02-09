@@ -3,7 +3,7 @@ const { test } = require('uvu');
 const assert = require('uvu/assert');
 const postcss = require('postcss');
 const advancedPreset = require('cssnano-preset-advanced');
-const defaultPreset = require('cssnano-preset-default');
+const defaultPreset = require('@pumpn/cssnano-preset-default');
 const cssnano = require('..');
 
 test('should accept an invoked preset', () => {
@@ -110,7 +110,7 @@ test('should error on a bad preset', async () => {
   try {
     await postcss([cssnano({ preset: 'avanced' })])
       .process('h1{}', { from: undefined })
-      .then(() => {});
+      .then(() => { });
     assert.unreachable();
   } catch (error) {
     assert.ok(error);

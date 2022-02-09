@@ -4,7 +4,7 @@ const { test } = require('uvu');
 const assert = require('uvu/assert');
 const postcss = require('postcss');
 const litePreset = require('cssnano-preset-lite');
-const defaultPreset = require('cssnano-preset-default');
+const defaultPreset = require('@pumpn/cssnano-preset-default');
 const cssnano = require('../..');
 
 /* The configuration is loaded relative to the current working directory,
