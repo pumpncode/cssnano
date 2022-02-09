@@ -3,7 +3,7 @@
     {
       "name": "cssnano-preset-default",
       "plugins": [
-        "css-declaration-sorter",
+        "@pumpn/css-declaration-sorterr",
         "postcss-calc",
         "postcss-colormin",
         "postcss-convert-values",
@@ -50,7 +50,7 @@
       "name": "autoprefixer"
     },
     {
-      "name": "css-declaration-sorter"
+      "name": "@pumpn/css-declaration-sorter"
     },
     {
       "name": "postcss-calc"
@@ -106,7 +106,6 @@
     {
       "name": "postcss-normalize-display-values"
     },
-
     {
       "name": "postcss-normalize-positions"
     },
@@ -154,7 +153,7 @@
     }
   ],
   "cssnano-preset-default": [
-    "css-declaration-sorter",
+    "@pumpn/css-declaration-sorter",
     "postcss-calc",
     "postcss-colormin",
     "postcss-convert-values",
