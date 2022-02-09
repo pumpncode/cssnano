@@ -16,7 +16,7 @@
         "postcss-minify-font-values",
         "postcss-minify-gradients",
         "postcss-minify-params",
-        "postcss-minify-selectors",
+        "@pumpn/postcss-minify-selectors",
         "postcss-normalize-charset",
         "postcss-normalize-display-values",
         "postcss-normalize-positions",
@@ -95,13 +95,13 @@
       "name": "postcss-minify-params"
     },
     {
-      "name": "postcss-minify-selectors"
+      "name": "@pumpn/postcss-minify-selectors"
     },
     {
       "name": "postcss-normalize-charset"
     },
     {
-      "name": "postcss-minify-selectors"
+      "name": "@pumpn/postcss-minify-selectors"
     },
     {
       "name": "postcss-normalize-display-values"
@@ -166,7 +166,7 @@
     "postcss-minify-font-values",
     "postcss-minify-gradients",
     "postcss-minify-params",
-    "postcss-minify-selectors",
+    "@pumpn/postcss-minify-selectors",
     "postcss-normalize-charset",
     "postcss-normalize-display-values",
     "postcss-normalize-positions",

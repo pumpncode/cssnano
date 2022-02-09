@@ -1,5 +1,5 @@
 'use strict';
-const parser = require('postcss-selector-parser');
+const parser = require('postcss-selector-parser').default;
 const canUnquote = require('./lib/canUnquote.js');
 
 const pseudoElements = new Set([
@@ -164,7 +164,7 @@ const reducers = new Map([
 
 function pluginCreator() {
   return {
-    postcssPlugin: 'postcss-minify-selectors',
+    postcssPlugin: '@pumpn/postcss-minify-selectors',
 
     OnceExit(css) {
       const cache = new Map();
