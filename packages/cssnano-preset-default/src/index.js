@@ -13,7 +13,7 @@
  * this preset require only minimal configuration.
  */
 
-import cssDeclarationSorter from "https://cdn.jsdelivr.net/gh/pumpncode/css-declaration-sorter@6.1.5/src/main.mjs";
+const cssDeclarationSorter = require('@pumpn/css-declaration-sorter');
 const postcssDiscardComments = require('postcss-discard-comments');
 const postcssReduceInitial = require('postcss-reduce-initial');
 const postcssMinifyGradients = require('postcss-minify-gradients');
