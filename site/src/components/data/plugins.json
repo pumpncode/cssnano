@@ -11,7 +11,7 @@
         "postcss-discard-duplicates",
         "postcss-discard-empty",
         "postcss-discard-overridden",
-        "postcss-merge-longhand",
+        "@pumpn/postcss-merge-longhand",
         "postcss-merge-rules",
         "postcss-minify-font-values",
         "postcss-minify-gradients",
@@ -80,7 +80,7 @@
       "name": "postcss-merge-idents"
     },
     {
-      "name": "postcss-merge-longhand"
+      "name": "@pumpn/postcss-merge-longhand"
     },
     {
       "name": "postcss-merge-rules"
@@ -149,7 +149,7 @@
       "name": "postcss-zindex"
     },
     {
-      "name": "stylehacks"
+      "name": "@pumpn/stylehacks"
     }
   ],
   "cssnano-preset-default": [
@@ -161,7 +161,7 @@
     "postcss-discard-duplicates",
     "postcss-discard-empty",
     "postcss-discard-overridden",
-    "postcss-merge-longhand",
+    "@pumpn/postcss-merge-longhand",
     "postcss-merge-rules",
     "postcss-minify-font-values",
     "postcss-minify-gradients",

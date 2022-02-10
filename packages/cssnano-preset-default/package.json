@@ -18,7 +18,7 @@
     "postcss-discard-duplicates": "^5.0.3",
     "postcss-discard-empty": "^5.0.3",
     "postcss-discard-overridden": "^5.0.4",
-    "postcss-merge-longhand": "^5.0.6",
+    "@pumpn/postcss-merge-longhand": "^5.0.6",
     "postcss-merge-rules": "^5.0.6",
     "postcss-minify-font-values": "^5.0.4",
     "postcss-minify-gradients": "^5.0.6",
