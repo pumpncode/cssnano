@@ -1,7 +1,7 @@
 {
   "presets": [
     {
-      "name": "cssnano-preset-default",
+      "name": "@pumpn/cssnano-preset-default",
       "plugins": [
         "@pumpn/css-declaration-sorterr",
         "postcss-calc",
@@ -34,10 +34,10 @@
       ]
     },
     {
-      "name": "cssnano-preset-advanced",
+      "name": "@pumpn/cssnano-preset-advanced",
       "plugins": [
-        "cssnano-preset-default",
-        "postcss-discard-unused",
+        "@pumpn/cssnano-preset-default",
+        "@pumpn/postcss-discard-unused",
         "postcss-merge-idents",
         "postcss-reduce-idents",
         "postcss-zindex",
@@ -74,7 +74,7 @@
       "name": "postcss-discard-overridden"
     },
     {
-      "name": "postcss-discard-unused"
+      "name": "@pumpn/postcss-discard-unused"
     },
     {
       "name": "postcss-merge-idents"
@@ -152,7 +152,7 @@
       "name": "@pumpn/stylehacks"
     }
   ],
-  "cssnano-preset-default": [
+  "@pumpn/cssnano-preset-default": [
     "@pumpn/css-declaration-sorter",
     "postcss-calc",
     "postcss-colormin",
@@ -182,9 +182,9 @@
     "postcss-svgo",
     "postcss-unique-selectors"
   ],
-  "cssnano-preset-advanced": [
-    "cssnano-preset-default",
-    "postcss-discard-unused",
+  "@pumpn/cssnano-preset-advanced": [
+    "@pumpn/cssnano-preset-default",
+    "@pumpn/postcss-discard-unused",
     "postcss-merge-idents",
     "postcss-reduce-idents",
     "postcss-zindex",
