@@ -1,5 +1,5 @@
 'use strict';
-const selectorParser = require('postcss-selector-parser');
+const selectorParser = require('postcss-selector-parser').default;
 
 const atrule = 'atrule';
 const decl = 'decl';

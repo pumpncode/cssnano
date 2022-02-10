@@ -1,6 +1,6 @@
 'use strict';
 const { isSupported } = require('caniuse-api');
-const selectorParser = require('postcss-selector-parser');
+const selectorParser = require('postcss-selector-parser').default;
 
 const simpleSelectorRe = /^#?[-._a-z0-9 ]+$/i;
 

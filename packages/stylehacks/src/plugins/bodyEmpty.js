@@ -1,5 +1,5 @@
 'use strict';
-const parser = require('postcss-selector-parser');
+const parser = require('postcss-selector-parser').default;
 const exists = require('../exists');
 const isMixin = require('../isMixin');
 const BasePlugin = require('../plugin');
