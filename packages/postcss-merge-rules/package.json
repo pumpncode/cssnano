@@ -1,6 +1,6 @@
 {
   "name": "@pumpn/postcss-merge-rules",
-  "version": "5.0.6",
+  "version": "5.1.0",
   "description": "Merge CSS rules with PostCSS.",
   "main": "src/index.js",
   "files": [
