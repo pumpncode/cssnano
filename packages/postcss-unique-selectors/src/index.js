@@ -13,7 +13,7 @@ function unique(rule) {
 
 function pluginCreator() {
   return {
-    postcssPlugin: 'postcss-unique-selectors',
+    postcssPlugin: '@pumpn/postcss-unique-selectors',
     OnceExit(css) {
       css.walkRules((nodes) => {
         let comments = [];

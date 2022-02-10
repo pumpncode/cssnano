@@ -3,7 +3,7 @@ const processors = require('./lib/decl');
 
 function pluginCreator() {
   return {
-    postcssPlugin: 'postcss-merge-longhand',
+    postcssPlugin: '@pumpn/postcss-merge-longhand',
 
     OnceExit(css) {
       css.walkRules((rule) => {
