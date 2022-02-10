@@ -1,6 +1,6 @@
 {
   "name": "@pumpn/cssnano-preset-advanced",
-  "version": "5.1.12",
+  "version": "5.2.0",
   "main": "src/index.js",
   "description": "Advanced optimisations for cssnano; may or may not break your CSS!",
   "files": [
