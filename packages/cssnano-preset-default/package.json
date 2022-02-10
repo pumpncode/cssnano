@@ -37,7 +37,7 @@
     "postcss-reduce-initial": "^5.0.3",
     "postcss-reduce-transforms": "^5.0.4",
     "postcss-svgo": "^5.0.4",
-    "postcss-unique-selectors": "^5.0.4"
+    "@pumpn/postcss-unique-selectors": "^5.1.0"
   },
   "author": {
     "name": "Ben Briggs",
