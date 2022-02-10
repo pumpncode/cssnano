@@ -359,7 +359,7 @@ function selectorMerger(browsers, compatibilityCache) {
 
 function pluginCreator() {
   return {
-    postcssPlugin: 'postcss-merge-rules',
+    postcssPlugin: '@pumpn/postcss-merge-rules',
 
     prepare(result) {
       const resultOpts = result.opts || {};
