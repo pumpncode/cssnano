@@ -1,6 +1,6 @@
 {
   "name": "@pumpn/postcss-unique-selectors",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "description": "Ensure CSS selectors are unique.",
   "main": "src/index.js",
   "files": [
