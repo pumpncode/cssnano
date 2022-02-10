@@ -24,7 +24,7 @@
   "repository": "cssnano/cssnano",
   "dependencies": {
     "postcss-value-parser": "^4.2.0",
-    "@pumpn/stylehacks": "^5.0.3"
+    "@pumpn/stylehacks": "^5.1.0"
   },
   "bugs": {
     "url": "https://github.com/cssnano/cssnano/issues"
